@@ -41,7 +41,7 @@ public class ROBOT {
         // ######################### //
         //        -Front Left-       //
         // ######################### //
-        drive_FL = hwMap.get(DcMotor.class, "Drive_FL");
+        drive_FL = hwMap.get(DcMotor.class, "leftMotor");
         drive_FL.setDirection(DcMotorSimple.Direction.REVERSE);                                     // Reversed so forward power moves left side forward
         drive_FL.setPower(0);
         drive_FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -50,7 +50,7 @@ public class ROBOT {
         // ######################### //
         //        -Front Right-      //
         // ######################### //
-        drive_FR = hwMap.get(DcMotor.class, "Drive_FR");
+        drive_FR = hwMap.get(DcMotor.class, "rightMotor");
         drive_FR.setDirection(DcMotorSimple.Direction.FORWARD);
         drive_FR.setPower(0);
         drive_FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
