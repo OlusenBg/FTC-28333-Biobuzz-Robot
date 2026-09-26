@@ -10,14 +10,14 @@ public class Drivetrain {
     }
 
     /**
-     * Drives the robot using Mecanum wheel kinematics.
+     * Mecanum wheel kinematics.
      *
      * @param y  Forward / Backward motion (typically -gamepad1.left_stick_y)
      * @param x  Strafe Left / Right motion (typically gamepad1.left_stick_x)
      * @param rx Rotation / Turning motion (typically gamepad1.right_stick_x)
      */
     public void drive(double y, double x, double rx) {
-        // Multiplier for strafe friction correction (mecanum wheels require slightly more power to strafe)
+        // Multiplier for strafe friction correction (Mecanum wheels require slightly more power to strafe)
         double strafeX = x * 1.1;
 
         // Calculate the power it needs to send to each motor
