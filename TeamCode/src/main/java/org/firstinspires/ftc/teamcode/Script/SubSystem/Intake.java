@@ -19,4 +19,8 @@ public class Intake {
     public void intake_Off() {
         robot.intake.setPower(0);
     }
+
+    public void intake_Reverse() {
+        robot.intake.setPower(-INTAKE_SPEED);
+    }
 }
