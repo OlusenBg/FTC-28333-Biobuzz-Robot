@@ -13,7 +13,7 @@ public class Shooter {
     public double F = 0.0;
 
     // 2. Target Speed
-    public double TARGET_VELOCITY = 2000.0;
+    public double TARGET_VELOCITY = 1150.0;
 
     public Shooter(ROBOT robot) {
         this.robot = robot;
