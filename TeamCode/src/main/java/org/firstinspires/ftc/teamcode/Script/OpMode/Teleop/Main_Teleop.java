@@ -10,8 +10,8 @@ import org.firstinspires.ftc.teamcode.Script.SubSystem.ROBOT;
 import org.firstinspires.ftc.teamcode.Script.SubSystem.Shooter;
 
 @TeleOp(name = "Main TeleOp", group = "TeleOp")
-public class Main_Teleop extends LinearOpMode {
 
+public class Main_Teleop extends LinearOpMode {
     private boolean endgameRumbled = false;
     private boolean shooterToggled = false;
     private boolean lastYState = false;
@@ -22,7 +22,6 @@ public class Main_Teleop extends LinearOpMode {
     public void runOpMode() {
         ROBOT robot = new ROBOT();
         robot.init(hardwareMap);
-
         Drivetrain drivetrain = new Drivetrain(robot);
         Intake intake = new Intake(robot);
         Shooter shooter = new Shooter(robot);
@@ -30,16 +29,17 @@ public class Main_Teleop extends LinearOpMode {
 
         telemetry.addData("Status", "Initialized & Ready");
         telemetry.update();
-
         waitForStart();
 
         resetRuntime(); // Reset match timer at Start
         long lastLoopTime = System.currentTimeMillis();
 
         while (opModeIsActive()) {
+
             long currentTime = System.currentTimeMillis();
             double loopMs = currentTime - lastLoopTime;
             lastLoopTime = currentTime;
+
 
             // 1. Drivetrain Control
             drivetrain.drive(
@@ -47,6 +47,7 @@ public class Main_Teleop extends LinearOpMode {
                     gamepad1.left_stick_x,
                     gamepad1.right_stick_x
             );
+
 
             // 2. Stopper Control
             String stopperState = "OFF";
@@ -62,7 +63,8 @@ public class Main_Teleop extends LinearOpMode {
             }
             lastXState = gamepad1.x;
 
-            // 2. Intake Control & State Tracker
+
+            // 3. Intake Control & State Tracker
             String intakeState;
             if (gamepad1.a) {
                 intake.intake_On();
@@ -75,7 +77,8 @@ public class Main_Teleop extends LinearOpMode {
                 intakeState = "OFF";
             }
 
-            // --- 3. Combined Shooter Control (R2 Variable + Y Toggle) ---
+
+            // --- 4. Combined Shooter Control (R2 Variable + Y Toggle) ---
 
             // A. Handle Y Toggle detection
             if (gamepad1.y && !lastYState){
@@ -95,14 +98,15 @@ public class Main_Teleop extends LinearOpMode {
                 shooter.shooter_Off();
             }
 
-            // 4. Match Timer & Endgame Alert (30s remaining)
+
+            // 5. Match Timer & Endgame Alert (30s remaining)
             double timeRemaining = Math.max(0, 120.0 - getRuntime());
             if (timeRemaining <= 30.0 && !endgameRumbled) {
                 gamepad1.rumble(500); // Alert driver via rumble
                 endgameRumbled = true;
             }
 
-            // 5. Telemetry Output - Driver Station
+            // 6. Telemetry Output - Driver Station
             telemetry.addLine("=== DRIVER DASHBOARD ===");
             telemetry.addData("Match Time Left", "%.1f s %s", timeRemaining, timeRemaining <= 30 ? "[ENDGAME]" : "");
             telemetry.addData("Intake Status", intakeState);

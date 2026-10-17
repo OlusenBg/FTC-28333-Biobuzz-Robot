@@ -26,7 +26,7 @@ public class Drivetrain {
         double frontRightPower = y - strafeX - rx;
         double backRightPower  = y + strafeX - rx;
 
-        // Normalize powers so no motor exceeds 1.0 (maintains correct drive proportions)
+        // Normalize power cuz it can't go over 1.0
         double maxPower = Math.max(Math.abs(frontLeftPower), Math.max(Math.abs(backLeftPower),
                           Math.max(Math.abs(frontRightPower), Math.abs(backRightPower))));
 
@@ -37,7 +37,7 @@ public class Drivetrain {
             backRightPower  /= maxPower;
         }
 
-        // Apply calculated powers to the motors defined in ROBOT.java
+        // Apply calculated powers to each motor
         robot.drive_FL.setPower(frontLeftPower);
         robot.drive_BL.setPower(backLeftPower);
         robot.drive_FR.setPower(frontRightPower);

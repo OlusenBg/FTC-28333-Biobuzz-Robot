@@ -15,5 +15,4 @@ public class Stopper {
         robot.stopper.setPosition(notBlocking);
     }
 
-
 }
