@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Script.SubSystem;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -8,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class ROBOT {
 
     // 1. Declare Motor and Servo variables
-    public DcMotor shooter;
+    public DcMotorEx shooter;
     public DcMotor intake;
     public DcMotor drive_FL;
     public DcMotor drive_FR;
@@ -23,11 +24,11 @@ public class ROBOT {
         // ######################### //
         //        -SHOOTER-          //
         // ######################### //
-        shooter = hwMap.get(DcMotor.class, "Shooter_M");                                // Control Hub Configuration name (To link it)
+        shooter = hwMap.get(DcMotorEx.class, "Shooter_M");                                // Control Hub Configuration name (To link it)
         shooter.setDirection(DcMotor.Direction.FORWARD);                                            // Direction
         shooter.setPower(0);                                                                        // Set the Speed of the Motor
         shooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);                              // Brake when idling or let spin (Break takes more  energy)
-        shooter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);                                       // Encoders won't generally be used because we use odometry points
+        shooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);                                       // Encoders won't generally be used because we use odometry points
 
         // ######################### //
         //         -INTAKE-          //
