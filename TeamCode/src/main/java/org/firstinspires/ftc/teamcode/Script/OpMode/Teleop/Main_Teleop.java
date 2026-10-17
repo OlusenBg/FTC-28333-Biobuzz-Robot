@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.Script.SubSystem.Drivetrain;
 import org.firstinspires.ftc.teamcode.Script.SubSystem.Intake;
 import org.firstinspires.ftc.teamcode.Script.SubSystem.ROBOT;
 import org.firstinspires.ftc.teamcode.Script.SubSystem.Shooter;
+import org.firstinspires.ftc.teamcode.Script.SubSystem.Stopper;
 
 @TeleOp(name = "Main TeleOp", group = "TeleOp")
 
@@ -25,6 +26,7 @@ public class Main_Teleop extends LinearOpMode {
         Drivetrain drivetrain = new Drivetrain(robot);
         Intake intake = new Intake(robot);
         Shooter shooter = new Shooter(robot);
+        Stopper stopper = new Stopper(robot);
         VoltageSensor batterySensor = hardwareMap.voltageSensor.iterator().next();
 
         telemetry.addData("Status", "Initialized & Ready");
@@ -50,18 +52,19 @@ public class Main_Teleop extends LinearOpMode {
 
 
             // 2. Stopper Control
-            String stopperState = "OFF";
-            if (gamepad1.x && !lastXState){
+            if (gamepad1.x && !lastXState) {
                 stopperToggled = !stopperToggled;
-                if (stopperToggled) {
-                    robot.stopper.setPosition(1.0);
-                    stopperState = "ON";
-                } else {
-                    robot.stopper.setPosition(0.0);
-                    stopperState = "OFF";
-                }
             }
             lastXState = gamepad1.x;
+
+            String stopperState;
+            if (stopperToggled) {
+                stopper.stopper_On();
+                stopperState = "ON (BLOCKING)";
+            } else {
+                stopper.stopper_Off();
+                stopperState = "OFF";
+            }
 
 
             // 3. Intake Control & State Tracker

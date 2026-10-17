@@ -43,12 +43,4 @@ public class Drivetrain {
         robot.drive_FR.setPower(frontRightPower);
         robot.drive_BR.setPower(backRightPower);
     }
-
-    // Stops the robot by setting all motor powers to 0
-    public void stop() {
-        robot.drive_FL.setPower(0);
-        robot.drive_BL.setPower(0);
-        robot.drive_FR.setPower(0);
-        robot.drive_BR.setPower(0);
-    }
 }
