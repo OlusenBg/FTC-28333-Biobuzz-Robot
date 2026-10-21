@@ -15,9 +15,11 @@ public class ROBOT {
     public DcMotor drive_FR;
     public DcMotor drive_BL;
     public DcMotor drive_BR;
-    public DcMotor turret;
 
+    public Servo turret_1;
+    public Servo turret_2;
     public Servo stopper;
+    public Servo adjustable_Hood;
 
     public void init(HardwareMap hwMap) {
 
@@ -76,14 +78,25 @@ public class ROBOT {
         drive_BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // ######################### //
-        //        -Turret-           //
+        //        -Turret 1-         //
         // ######################### //
-        turret = hwMap.get(DcMotor.class, "Turret");
-        turret.setDirection(DcMotorSimple.Direction.FORWARD);
-        turret.setPower(0);
-        turret.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        turret.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        turret_1 = hwMap.get(Servo.class, "Turret_1");
+        turret_1.setDirection(Servo.Direction.FORWARD);                                              // Use REVERSE if servo moves backwards
+        turret_1.setPosition(0.0);
 
+        // ######################### //
+        //        -Turret 2-         //
+        // ######################### //
+        turret_2 = hwMap.get(Servo.class, "Turret_2");
+        turret_2.setDirection(Servo.Direction.FORWARD);                                              // Use REVERSE if servo moves backwards
+        turret_2.setPosition(0.0);
+
+        // ######################### //
+        //     -Adjustable Hood-     //
+        // ######################### //
+        adjustable_Hood = hwMap.get(Servo.class, "Adjustable_Hood");
+        adjustable_Hood.setDirection(Servo.Direction.FORWARD);                                              // Use REVERSE if servo moves backwards
+        adjustable_Hood.setPosition(0.0);
 
         // ######################### //
         //        -Stopper-          //
