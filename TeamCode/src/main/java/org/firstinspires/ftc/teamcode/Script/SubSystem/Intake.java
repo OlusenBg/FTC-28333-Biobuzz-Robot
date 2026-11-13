@@ -11,16 +11,27 @@ public class Intake {
     }
 
     // Turns Intake On (INTAKE_SPEED)
-    public void intake_On() {
-        robot.intake.setPower(INTAKE_SPEED);
+    public void intake1_On() {
+        robot.intake1.setPower(INTAKE_SPEED);
+    }
+
+    public void intake2_On(){
+        robot.intake2.setPower(INTAKE_SPEED);
     }
 
     // Turns Intake Off (0)
-    public void intake_Off() {
-        robot.intake.setPower(0);
+    public void intake1_Off() {
+        robot.intake1.setPower(0);
+    }
+
+    public void intake2_off(){
+        robot.intake2.setPower(0);
     }
 
     public void intake_Reverse() {
-        robot.intake.setPower(-INTAKE_SPEED);
+        robot.intake1.setPower(-INTAKE_SPEED);
+        robot.intake2.setPower(-INTAKE_SPEED);
     }
+
+
 }

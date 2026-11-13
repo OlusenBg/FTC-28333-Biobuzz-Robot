@@ -10,7 +10,8 @@ public class ROBOT {
 
     // 1. Declare Motor and Servo variables
     public DcMotorEx shooter;
-    public DcMotor intake;
+    public DcMotor intake1;
+    public DcMotor intake2;
     public DcMotor drive_FL;
     public DcMotor drive_FR;
     public DcMotor drive_BL;
@@ -35,11 +36,19 @@ public class ROBOT {
         // ######################### //
         //         -INTAKE-          //
         // ######################### //
-        intake = hwMap.get(DcMotor.class, "Intake_M");
-        intake.setDirection(DcMotorSimple.Direction.FORWARD);
-        intake.setPower(0);
-        intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        intake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        intake1 = hwMap.get(DcMotor.class, "Intake_1");
+        intake1.setDirection(DcMotorSimple.Direction.FORWARD);
+        intake1.setPower(0);
+        intake1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intake1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        intake2 = hwMap.get(DcMotor.class, "Intake_2");
+        intake2.setDirection(DcMotorSimple.Direction.FORWARD);
+        intake2.setPower(0);
+        intake2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intake2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+
 
         // ######################### //
         //        -Front Left-       //
