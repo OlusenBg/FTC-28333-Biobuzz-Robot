@@ -91,12 +91,6 @@ public class ROBOT {
         turret_2.setDirection(Servo.Direction.FORWARD);                                              // Use REVERSE if servo moves backwards
         turret_2.setPosition(0.0);
 
-        // ######################### //
-        //     -Adjustable Hood-     //
-        // ######################### //
-        adjustable_Hood = hwMap.get(Servo.class, "Adjustable_Hood");
-        adjustable_Hood.setDirection(Servo.Direction.FORWARD);                                              // Use REVERSE if servo moves backwards
-        adjustable_Hood.setPosition(0.0);
 
         // ######################### //
         //        -Stopper-          //
