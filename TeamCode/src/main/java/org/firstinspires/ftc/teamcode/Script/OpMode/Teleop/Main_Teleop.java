@@ -4,11 +4,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
+import org.firstinspires.ftc.teamcode.Script.SubSystem.Adjustable_Hood;
 import org.firstinspires.ftc.teamcode.Script.SubSystem.Drivetrain;
 import org.firstinspires.ftc.teamcode.Script.SubSystem.Intake;
 import org.firstinspires.ftc.teamcode.Script.SubSystem.ROBOT;
 import org.firstinspires.ftc.teamcode.Script.SubSystem.Shooter;
 import org.firstinspires.ftc.teamcode.Script.SubSystem.Stopper;
+import org.firstinspires.ftc.teamcode.Script.SubSystem.Turret;
 
 @TeleOp(name = "Main TeleOp", group = "TeleOp")
 
@@ -27,7 +29,13 @@ public class Main_Teleop extends LinearOpMode {
         Intake intake = new Intake(robot);
         Shooter shooter = new Shooter(robot);
         Stopper stopper = new Stopper(robot);
-        VoltageSensor batterySensor = hardwareMap.voltageSensor.iterator().next();
+        Turret turret = new Turret(robot);
+        Adjustable_Hood hood = new Adjustable_Hood(robot);
+
+        VoltageSensor batterySensor = null;
+        if (hardwareMap.voltageSensor.iterator().hasNext()) {
+            batterySensor = hardwareMap.voltageSensor.iterator().next();
+        }
 
         telemetry.addData("Status", "Initialized & Ready");
         telemetry.update();
@@ -81,7 +89,21 @@ public class Main_Teleop extends LinearOpMode {
             }
 
 
-            // --- 4. Combined Shooter Control (R2 Variable + Y Toggle) ---
+            // --- 4. Turret & Hood Control ---
+            if (gamepad1.dpad_left) {
+                turret.turret_Left();
+            } else if (gamepad1.dpad_right) {
+                turret.turret_Right();
+            }
+
+            if (gamepad1.left_bumper) {
+                hood.setPOSITION_DOWN();
+            } else if (gamepad1.right_bumper) {
+                hood.setPOSITION_UP();
+            }
+
+
+            // --- 5. Combined Shooter Control (R2 Variable + Y Toggle) ---
 
             // A. Handle Y Toggle detection
             if (gamepad1.y && !lastYState){
@@ -102,19 +124,23 @@ public class Main_Teleop extends LinearOpMode {
             }
 
 
-            // 5. Match Timer & Endgame Alert (30s remaining)
+            // 6. Match Timer & Endgame Alert (30s remaining)
             double timeRemaining = Math.max(0, 120.0 - getRuntime());
             if (timeRemaining <= 30.0 && !endgameRumbled) {
                 gamepad1.rumble(500); // Alert driver via rumble
                 endgameRumbled = true;
             }
 
-            // 6. Telemetry Output - Driver Station
+            // 7. Telemetry Output - Driver Station
             telemetry.addLine("=== DRIVER DASHBOARD ===");
             telemetry.addData("Match Time Left", "%.1f s %s", timeRemaining, timeRemaining <= 30 ? "[ENDGAME]" : "");
             telemetry.addData("Intake Status", intakeState);
             telemetry.addData("Stopper Status", stopperState);
-            telemetry.addData("Battery Voltage", "%.2f V", batterySensor.getVoltage());
+            if (batterySensor != null) {
+                telemetry.addData("Battery Voltage", "%.2f V", batterySensor.getVoltage());
+            } else {
+                telemetry.addData("Battery Voltage", "No voltage sensor found in config");
+            }
             telemetry.addData("Shooter Velocity", "%.0f / %.0f (Ready: %b)",
                     shooter.getVelocity(), shooter.TARGET_VELOCITY, shooter.isReadyToShoot());
 

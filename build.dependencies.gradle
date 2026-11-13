@@ -14,9 +14,15 @@ dependencies {
     implementation 'org.firstinspires.ftc:Hardware:12.0.0'
     implementation 'org.firstinspires.ftc:FtcCommon:12.0.0'
     implementation 'org.firstinspires.ftc:Vision:12.0.0'
-    implementation 'androidx.appcompat:appcompat:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
 
     implementation 'com.pedropathing:revhub:3.0.2'
     implementation 'com.pedropathing:tuning:1.0.2'
     implementation 'com.pedropathing.ivy:pedro:1.1.1'
+}
+
+// jspecify's @NullMarked targets ElementType.MODULE (Java 9+), which doesn't exist on the
+// Control Hub's Android 7.1 runtime; reflecting on classes carrying it crashes the RC app at launch.
+configurations.configureEach {
+    exclude group: 'org.jspecify', module: 'jspecify'
 }
