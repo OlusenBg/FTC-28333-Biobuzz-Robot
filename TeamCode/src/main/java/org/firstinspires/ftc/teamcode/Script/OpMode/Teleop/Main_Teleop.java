@@ -30,7 +30,6 @@ public class Main_Teleop extends LinearOpMode {
         Shooter shooter = new Shooter(robot);
         Stopper stopper = new Stopper(robot);
         Turret turret = new Turret(robot);
-        Adjustable_Hood hood = new Adjustable_Hood(robot);
 
         VoltageSensor batterySensor = null;
         if (hardwareMap.voltageSensor.iterator().hasNext()) {
