@@ -8,11 +8,15 @@ public class Stopper {
     public Stopper (ROBOT robot) {this.robot = robot;}
 
     public void stopper_On() {
-        robot.stopper.setPosition(blocking);
+        if (robot.stopper != null) {
+            robot.stopper.setPosition(blocking);
+        }
     }
 
     public void stopper_Off() {
-        robot.stopper.setPosition(notBlocking);
+        if (robot.stopper != null) {
+            robot.stopper.setPosition(notBlocking);
+        }
     }
 
 }

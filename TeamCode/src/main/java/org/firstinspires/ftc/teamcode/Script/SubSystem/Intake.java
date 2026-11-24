@@ -12,15 +12,21 @@ public class Intake {
 
     // Turns Intake On (INTAKE_SPEED)
     public void intake_On() {
-        robot.intake.setPower(INTAKE_SPEED);
+        if (robot.intake != null) {
+            robot.intake.setPower(INTAKE_SPEED);
+        }
     }
 
     // Turns Intake Off (0)
     public void intake_Off() {
-        robot.intake.setPower(0);
+        if (robot.intake != null) {
+            robot.intake.setPower(0);
+        }
     }
 
     public void intake_Reverse() {
-        robot.intake.setPower(-INTAKE_SPEED);
+        if (robot.intake != null) {
+            robot.intake.setPower(-INTAKE_SPEED);
+        }
     }
 }

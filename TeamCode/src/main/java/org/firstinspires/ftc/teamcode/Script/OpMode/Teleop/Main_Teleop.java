@@ -96,13 +96,6 @@ public class Main_Teleop extends LinearOpMode {
                 turret.turret_Right();
             }
 
-            if (gamepad1.left_bumper) {
-                hood.setPOSITION_DOWN();
-            } else if (gamepad1.right_bumper) {
-                hood.setPOSITION_UP();
-            }
-
-
             // --- 5. Combined Shooter Control (R2 Variable + Y Toggle) ---
 
             // A. Handle Y Toggle detection
