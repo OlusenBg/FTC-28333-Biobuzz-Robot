@@ -30,7 +30,6 @@ public class Main_Teleop extends LinearOpMode {
         Shooter shooter = new Shooter(robot);
         Stopper stopper = new Stopper(robot);
         Turret turret = new Turret(robot);
-        Adjustable_Hood hood = new Adjustable_Hood(robot);
 
         VoltageSensor batterySensor = null;
         if (hardwareMap.voltageSensor.iterator().hasNext()) {
@@ -97,13 +96,6 @@ public class Main_Teleop extends LinearOpMode {
             } else if (gamepad1.dpad_right) {
                 turret.turret_Right();
             }
-
-            if (gamepad1.left_bumper) {
-                hood.setPOSITION_DOWN();
-            } else if (gamepad1.right_bumper) {
-                hood.setPOSITION_UP();
-            }
-
 
             // --- 5. Combined Shooter Control (R2 Variable + Y Toggle) ---
 
