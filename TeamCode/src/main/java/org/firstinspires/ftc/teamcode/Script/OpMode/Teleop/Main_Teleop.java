@@ -26,7 +26,8 @@ public class Main_Teleop extends LinearOpMode {
         ROBOT robot = new ROBOT();
         robot.init(hardwareMap);
         Drivetrain drivetrain = new Drivetrain(robot);
-        Intake intake = new Intake(robot);
+        Intake intake1 = new Intake(robot);
+        Intake intake2 = new Intake(robot);
         Shooter shooter = new Shooter(robot);
         Stopper stopper = new Stopper(robot);
         Turret turret = new Turret(robot);
@@ -59,10 +60,10 @@ public class Main_Teleop extends LinearOpMode {
 
 
             // 2. Stopper Control
-            if (gamepad1.x && !lastXState) {
+            if (gamepad1.right_bumper && !lastXState) {
                 stopperToggled = !stopperToggled;
             }
-            lastXState = gamepad1.x;
+            lastXState = gamepad1.right_bumper;
 
             String stopperState;
             if (stopperToggled) {
@@ -76,18 +77,19 @@ public class Main_Teleop extends LinearOpMode {
 
             // 3. Intake Control & State Tracker
             String intakeState;
-            if (gamepad1.a) {
-                intake.intake1_On();
+            if (gamepad1.left_bumper) {
+                intake1.intake1_On();
+                intake2.intake2_On();
                 intakeState = "INTAKING (IN)";
             } else if (gamepad1.b) {
-                intake.intake_Reverse();
+                intake1.intake_Reverse();
+                intake2.intake_Reverse();
                 intakeState = "REVERSING (OUT)";
             } else {
-                intake.intake1_Off();
+                intake1.intake1_Off();
+                intake2.intake2_off();
                 intakeState = "OFF";
             }
-
-            //TODO before running the robot put buttons to control the second intake motor
 
 
             // --- 4. Turret & Hood Control ---
