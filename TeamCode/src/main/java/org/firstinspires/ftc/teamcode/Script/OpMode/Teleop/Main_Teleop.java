@@ -77,15 +77,17 @@ public class Main_Teleop extends LinearOpMode {
             // 3. Intake Control & State Tracker
             String intakeState;
             if (gamepad1.a) {
-                intake.intake_On();
+                intake.intake1_On();
                 intakeState = "INTAKING (IN)";
             } else if (gamepad1.b) {
                 intake.intake_Reverse();
                 intakeState = "REVERSING (OUT)";
             } else {
-                intake.intake_Off();
+                intake.intake1_Off();
                 intakeState = "OFF";
             }
+
+            //TODO before running the robot put buttons to control the second intake motor
 
 
             // --- 4. Turret & Hood Control ---

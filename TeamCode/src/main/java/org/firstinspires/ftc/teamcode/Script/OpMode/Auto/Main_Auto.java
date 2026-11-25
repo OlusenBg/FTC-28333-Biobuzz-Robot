@@ -53,7 +53,8 @@ public class Main_Auto extends LinearOpMode {
 
             shooter.shooter_Off();
             stopper.stopper_On();
-            intake.intake_Off();
+            intake.intake1_Off();
+            intake.intake2_off();
 
             telemetry.addData("Status", "Autonomous Complete");
             telemetry.update();
